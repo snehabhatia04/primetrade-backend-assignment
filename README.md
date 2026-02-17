@@ -112,20 +112,20 @@ Flow explanation:
 ## Setup Instructions
 
 ### 1. Install dependencies
-cd backend
+cd backend  
 npm install
 
 
 ### 2. Configure environment
 Create `.env` in backend:
 
-PORT=5000
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=primetrade
-JWT_SECRET=supersecretkey
+PORT=5000  
+DB_USER=postgres  
+DB_PASSWORD=your_password  
+DB_HOST=localhost  
+DB_PORT=5432  
+DB_NAME=primetrade  
+JWT_SECRET=supersecretkey  
 
 
 ### 3. Create database
@@ -142,7 +142,7 @@ npm run dev
 
 
 ### 5. Run frontend
-Open:
+Open:  
 frontend/register.html
 
 ---
