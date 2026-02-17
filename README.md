@@ -89,13 +89,23 @@ created_at | TIMESTAMP
 ---
 
 ## Project Structure
-backend/src
-│
-├── config (database connection)
-├── controllers (business logic)
-├── middleware (auth & role)
-├── routes (API endpoints)
-└── app.js (entry point)
+```
+backend/
+└── src/
+    ├── config/               # Database connection
+    │   └── db.js
+    ├── controllers/          # Business logic
+    │   ├── authController.js
+    │   └── taskController.js
+    ├── middleware/            # Authentication & authorization
+    │   ├── authMiddleware.js
+    │   └── roleMiddleware.js
+    ├── routes/               # API route definitions
+    │   ├── authRoutes.js
+    │   └── taskRoutes.js
+    └── app.js                # Application entry point
+```
+
 ---
 
 ## Frontend Flow
@@ -112,20 +122,20 @@ Flow explanation:
 ## Setup Instructions
 
 ### 1. Install dependencies
-cd backend
+cd backend  
 npm install
 
 
 ### 2. Configure environment
 Create `.env` in backend:
 
-PORT=5000
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=primetrade
-JWT_SECRET=supersecretkey
+PORT=5000  
+DB_USER=postgres  
+DB_PASSWORD=your_password  
+DB_HOST=localhost  
+DB_PORT=5432  
+DB_NAME=primetrade  
+JWT_SECRET=supersecretkey  
 
 
 ### 3. Create database
@@ -142,8 +152,21 @@ npm run dev
 
 
 ### 5. Run frontend
-Open:
+Open:  
 frontend/register.html
+
+---
+
+## Caching (Redis)
+
+Redis caching is implemented for task retrieval.
+
+When a user requests their tasks:
+1. The server first checks Redis cache
+2. If found (cache hit), data is returned instantly
+3. If not found (cache miss), PostgreSQL is queried and the result is cached for 60 seconds
+
+Cache is automatically invalidated when a new task is created.
 
 ---
 
@@ -163,7 +186,7 @@ The application is designed with scalability in mind:
 ## Testing
 
 All APIs can be tested using the included Postman collection:
-
+`postman_collection.json`
 
 
 
