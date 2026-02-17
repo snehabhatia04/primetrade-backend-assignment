@@ -163,7 +163,7 @@ The application is designed with scalability in mind:
 ## Testing
 
 All APIs can be tested using the included Postman collection:
-
+`postman_collection.json`
 
 
 
