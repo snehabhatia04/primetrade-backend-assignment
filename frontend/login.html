@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <div class="link">
+        New user? <a href="register.html">Register</a>
+    </div>
+</div>
+
+<script>
+async function login(){
+    const res = await fetch("http://localhost:5000/api/v1/auth/login",{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            email:email.value,
+            password:password.value
+        })
+    });
+
+    const data = await res.json();
+
+    if(data.token){
+        localStorage.setItem("token",data.token);
+        window.location.href="dashboard.html";
+    }else{
+        alert("Invalid credentials");
+    }
+}
+</script>
+
+</body>
+</html>

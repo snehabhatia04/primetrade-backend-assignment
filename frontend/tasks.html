@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="container dashboard">
+
+    <h2>Task Manager</h2>
+
+    <input id="title" placeholder="Task title">
+    <input id="description" placeholder="Task description">
+    <button onclick="createTask()">Create Task</button>
+
+    <button onclick="loadTasks()">View My Tasks</button>
+
+    <div id="taskList"></div>
+
+    <button onclick="back()">Back</button>
+</div>
+
+<script>
+
+const token = localStorage.getItem("token");
+if(!token) window.location.href="login.html";
+
+async function createTask(){
+    await fetch("http://localhost:5000/api/v1/tasks",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json",
+            "Authorization":"Bearer "+token
+        },
+        body:JSON.stringify({
+            title:title.value,
+            description:description.value
+        })
+    });
+    alert("Task created");
+}
+
+async function loadTasks(){
+    const res = await fetch("http://localhost:5000/api/v1/tasks/my",{
+        headers:{ "Authorization":"Bearer "+token }
+    });
+
+    const tasks = await res.json();
+    taskList.innerHTML="";
+
+    tasks.forEach(t=>{
+        const div=document.createElement("div");
+        div.className="task-box";
+        div.innerText=t.title+" - "+t.description;
+        taskList.appendChild(div);
+    });
+}
+
+function back(){
+    window.location.href="dashboard.html";
+}
+
+</script>
+
+</body>
+</html>
