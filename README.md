@@ -157,6 +157,19 @@ frontend/register.html
 
 ---
 
+## Caching (Redis)
+
+Redis caching is implemented for task retrieval.
+
+When a user requests their tasks:
+1. The server first checks Redis cache
+2. If found (cache hit), data is returned instantly
+3. If not found (cache miss), PostgreSQL is queried and the result is cached for 60 seconds
+
+Cache is automatically invalidated when a new task is created.
+
+---
+
 ## Scalability Considerations
 
 The application is designed with scalability in mind:
