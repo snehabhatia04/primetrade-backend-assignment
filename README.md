@@ -89,20 +89,22 @@ created_at | TIMESTAMP
 ---
 
 ## Project Structure
+```
 backend/
 └── src/
-├── config/ # Database connection
-│ └── db.js
-├── controllers/ # Business logic
-│ ├── authController.js
-│ └── taskController.js
-├── middleware/ # Authentication & authorization
-│ ├── authMiddleware.js
-│ └── roleMiddleware.js
-├── routes/ # API route definitions
-│ ├── authRoutes.js
-│ └── taskRoutes.js
-└── app.js # Application entry point
+    ├── config/               # Database connection
+    │   └── db.js
+    ├── controllers/          # Business logic
+    │   ├── authController.js
+    │   └── taskController.js
+    ├── middleware/            # Authentication & authorization
+    │   ├── authMiddleware.js
+    │   └── roleMiddleware.js
+    ├── routes/               # API route definitions
+    │   ├── authRoutes.js
+    │   └── taskRoutes.js
+    └── app.js                # Application entry point
+```
 
 ---
 
